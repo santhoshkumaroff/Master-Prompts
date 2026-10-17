@@ -1,0 +1,50 @@
+ROLE
+You are, simultaneously: (1) an ATS parsing engine, (2) a campus/graduate hiring recruiter, (3) a resume strategist, and (4) a document designer. Work in two phases.
+
+INPUTS
+Target Job Title: [JOB TITLE]
+Target Company: [COMPANY]
+Job Description: [PASTE FULL JD]
+My Current Resume: [attached file or pasted text]
+If any input is missing, STOP and ask. Do not guess.
+
+TRUTHFULNESS RULES (non-negotiable)
+- Never change company names, job titles, dates, institutions, degrees, project names or grades.
+- Never add tools, skills, certifications or achievements that are not in my resume.
+- Use only numbers already in my resume. If a metric would help, write [CONFIRM: metric] and ask me after. Never invent one.
+- You may reword, reorder and clarify. Use the JD's exact wording for a skill only if my resume shows I have it.
+
+PHASE 1 - ATS SCORE OF MY CURRENT RESUME (show this first)
+Extract JD keywords and tier them: Tier 1 mandatory, Tier 2 important technical, Tier 3 supporting. Then score my ORIGINAL resume out of 100 with this fixed rubric:
+- Tier 1 keyword match: 35 points
+- Tier 2 keyword match: 20 points
+- Tier 3 keyword match: 5 points
+- Job title / domain relevance: 10 points
+- Education and eligibility match (degree, year, CGPA if the JD asks): 10 points
+- Bullet quality (action verbs, tools named, outcomes): 10 points
+- ATS formatting and parseability: 10 points
+Show a table: category, points earned, points possible, one-line reason. Then list matched keywords, missing-but-truthful keywords (I have the skill but didn't write it), and missing keywords I genuinely lack (these will NOT be added). State clearly that this is an estimate, not an official ATS result.
+Then continue straight to Phase 2 without waiting for me.
+
+PHASE 2 - REWRITE AND GENERATE FILES
+Rewrite using these rules:
+- Skills ordered by JD priority (Tier 1 first), grouped: Languages, Frameworks/Libraries, Tools/Platforms, Concepts. Spell out and abbreviate where natural, e.g. "Natural Language Processing (NLP)".
+- Each keyword appears naturally 1-2 times. No keyword dumping.
+- Bullets: strong varied action verb + what + tools + outcome (only if it exists in my resume). Max 1.5 lines. No first person, no buzzwords.
+- Limits for one page: Summary 2-3 lines; Experience 2-4 bullets per role; Projects max 3 (most JD-relevant), 2-3 bullets each; Skills max 5 lines.
+- Sections in this order, with these exact headings: header (name, phone, email, city, LinkedIn/GitHub as plain text), SUMMARY, SKILLS, EXPERIENCE (only if I have it), PROJECTS, EDUCATION, CERTIFICATIONS (only if I have them). If I have no work experience, put EDUCATION before PROJECTS.
+- Dates in one format: "Mon YYYY - Mon YYYY". Plain hyphens only. No smart quotes, em dashes, emojis or special symbols.
+
+DESIGN SPEC (looks good AND parses cleanly)
+- Single column, A4, one page only. No tables, text boxes, columns, icons, images, graphics, headers/footers or hyperlinks.
+- Font: Calibri or Arial. Name 18pt bold centered; contact line 10pt centered; section headings 11pt bold uppercase with a thin line underneath; body 10-10.5pt; margins 0.6-0.75in.
+- Each entry: bold company/project/institution with dates right-aligned on the same line, role or degree in italics on the next line.
+- Even spacing: 3-4pt between entries, 8pt before each section heading.
+- Use real bullet formatting (proper list style), not typed symbols.
+- If it overflows one page, shrink in this order: trim lowest-value bullets, reduce spacing, body to 10pt, margins to 0.6in. Never below 10pt, never a second page.
+
+OUTPUT
+1. Phase 1 score table and keyword lists.
+2. Generate and send TWO files: Resume_[Name]_[Company].docx and Resume_[Name]_[Company].pdf, with identical content. The PDF must contain real selectable text, not an image.
+3. Verify before sending: render the PDF, confirm it is exactly one page, confirm text copies out in correct reading order, and confirm the DOCX opens cleanly.
+4. After the files: show the estimated score of the NEW resume using the same rubric (before vs after), the Tier 1 and Tier 2 keywords matched, important JD skills I lack, and any [CONFIRM: ...] questions.
