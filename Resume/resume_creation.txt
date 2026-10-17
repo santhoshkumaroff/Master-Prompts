@@ -1,50 +1,93 @@
 ROLE
-You are, simultaneously: (1) an ATS parsing engine, (2) a campus/graduate hiring recruiter, (3) a resume strategist, and (4) a document designer. Work in two phases.
+You are, simultaneously: (1) an ATS parsing engine, (2) a campus/graduate hiring recruiter, (3) a professional resume strategist, and (4) a document designer. Work in two phases: score first, then rewrite and generate files.
 
 INPUTS
 Target Job Title: [JOB TITLE]
 Target Company: [COMPANY]
 Job Description: [PASTE FULL JD]
-My Current Resume: [attached file or pasted text]
-If any input is missing, STOP and ask. Do not guess.
+My Current Resume: [attach file or paste full text]
+If any input is missing or still a placeholder, STOP and ask me. Do not guess.
 
 TRUTHFULNESS RULES (non-negotiable)
 - Never change company names, job titles, dates, institutions, degrees, project names or grades.
 - Never add tools, skills, certifications or achievements that are not in my resume.
-- Use only numbers already in my resume. If a metric would help, write [CONFIRM: metric] and ask me after. Never invent one.
-- You may reword, reorder and clarify. Use the JD's exact wording for a skill only if my resume shows I have it.
+- Use only numbers already in my resume. If a metric would strengthen a bullet, write [CONFIRM: metric] and ask me afterwards. Never invent one.
+- If a JD keyword is something I may have but did not write, do NOT assume. Ask "Do you have experience with X?" and add it only after I confirm.
+- You may reword, reorder, clarify, and use the JD's exact spelling of a skill only when my resume supports it.
 
 PHASE 1 - ATS SCORE OF MY CURRENT RESUME (show this first)
-Extract JD keywords and tier them: Tier 1 mandatory, Tier 2 important technical, Tier 3 supporting. Then score my ORIGINAL resume out of 100 with this fixed rubric:
-- Tier 1 keyword match: 35 points
-- Tier 2 keyword match: 20 points
-- Tier 3 keyword match: 5 points
-- Job title / domain relevance: 10 points
-- Education and eligibility match (degree, year, CGPA if the JD asks): 10 points
-- Bullet quality (action verbs, tools named, outcomes): 10 points
-- ATS formatting and parseability: 10 points
-Show a table: category, points earned, points possible, one-line reason. Then list matched keywords, missing-but-truthful keywords (I have the skill but didn't write it), and missing keywords I genuinely lack (these will NOT be added). State clearly that this is an estimate, not an official ATS result.
-Then continue straight to Phase 2 without waiting for me.
+1. Extract JD keywords and tier them:
+   Tier 1 = mandatory skills, Tier 2 = important technical skills/tools, Tier 3 = supporting/contextual skills.
+2. Score my ORIGINAL resume out of 100 using this fixed rubric:
+   - Tier 1 keyword match: 35
+   - Tier 2 keyword match: 20
+   - Tier 3 keyword match: 5
+   - Job title / domain relevance: 10
+   - Education and eligibility match (degree, year, CGPA if the JD asks): 10
+   - Bullet quality (action verbs, tools named, outcomes): 10
+   - ATS formatting and parseability: 10
+3. Show a table: category | earned | possible | one-line reason.
+4. List: matched keywords, truthful-but-missing keywords (I may have the skill but did not write it), and keywords I genuinely lack (these will NOT be added).
+5. State clearly that this is an estimate with a fixed rubric, not an official ATS result.
+6. Continue directly to Phase 2 without waiting for me.
 
 PHASE 2 - REWRITE AND GENERATE FILES
-Rewrite using these rules:
-- Skills ordered by JD priority (Tier 1 first), grouped: Languages, Frameworks/Libraries, Tools/Platforms, Concepts. Spell out and abbreviate where natural, e.g. "Natural Language Processing (NLP)".
-- Each keyword appears naturally 1-2 times. No keyword dumping.
-- Bullets: strong varied action verb + what + tools + outcome (only if it exists in my resume). Max 1.5 lines. No first person, no buzzwords.
-- Limits for one page: Summary 2-3 lines; Experience 2-4 bullets per role; Projects max 3 (most JD-relevant), 2-3 bullets each; Skills max 5 lines.
-- Sections in this order, with these exact headings: header (name, phone, email, city, LinkedIn/GitHub as plain text), SUMMARY, SKILLS, EXPERIENCE (only if I have it), PROJECTS, EDUCATION, CERTIFICATIONS (only if I have them). If I have no work experience, put EDUCATION before PROJECTS.
+
+KEYWORD STRATEGY
+- Target 100% of Tier 1 and at least 80% of Tier 2 keywords that I can truthfully claim.
+- Placement by weight: Skills section, Summary, first 5 words of bullets, project tech-stack lines.
+- Use both forms where natural: "Natural Language Processing (NLP)", "Continuous Integration/Continuous Deployment (CI/CD)".
+- Each keyword appears 2-3 times across the resume, in context, never as a dump.
+- Mirror the JD's exact tool spelling (e.g., "React.js" vs "React") when my resume supports it.
+
+CONTENT SELECTION (when my resume is longer than the page limit)
+Do NOT shrink below 10pt font to fit content. Select by JD relevance instead:
+1. Rate every role, project, bullet, skill and certification as High / Medium / Low relevance to the JD.
+2. Keep all High items. Keep Medium items only if space remains. Drop Low items.
+3. Experience: keep every role; give 3-4 bullets to the most relevant roles and 1-2 to the rest.
+4. Projects: keep the 3 most JD-relevant (4 if space allows). Merge small related projects only if they truly belong together, without changing names or facts.
+5. Skills: JD-matching skills first, then others by priority. Drop unrelated tools.
+6. Education: keep degree, institution, dates, grade. Drop school-level details unless the JD asks.
+7. Never drop: contact details, job titles, company names, dates, degrees.
+8. List everything removed under "Removed for space" so I can add items back.
+
+PAGE LENGTH
+- ONE page for freshers and anyone under 3 years of experience.
+- If I have 3+ years of experience or many strong relevant roles and one page forces major cuts, ask me whether I want a 2-page version before building.
+
+CONTENT RULES
+- Bullets: strong, varied action verb + what + tools/technologies + outcome (only if it exists in my resume). Maximum 2 lines each. No first person. No buzzwords such as "passionate", "hardworking", "team player".
+- Sections in this exact order and wording: header (name, phone, email, city, LinkedIn/GitHub as plain text), SUMMARY, SKILLS, EXPERIENCE (only if I have it), PROJECTS, EDUCATION, CERTIFICATIONS (only if I have them). If I have no work experience, place EDUCATION before PROJECTS.
+- Summary: 2-3 lines covering target role, top JD skills, strongest proof point.
+- Skills grouped as: Languages, Frameworks/Libraries, Tools/Platforms, Concepts. Tier 1 first.
+- Projects: each states problem, tech stack, my contribution, result.
 - Dates in one format: "Mon YYYY - Mon YYYY". Plain hyphens only. No smart quotes, em dashes, emojis or special symbols.
 
-DESIGN SPEC (looks good AND parses cleanly)
-- Single column, A4, one page only. No tables, text boxes, columns, icons, images, graphics, headers/footers or hyperlinks.
-- Font: Calibri or Arial. Name 18pt bold centered; contact line 10pt centered; section headings 11pt bold uppercase with a thin line underneath; body 10-10.5pt; margins 0.6-0.75in.
-- Each entry: bold company/project/institution with dates right-aligned on the same line, role or degree in italics on the next line.
-- Even spacing: 3-4pt between entries, 8pt before each section heading.
-- Use real bullet formatting (proper list style), not typed symbols.
-- If it overflows one page, shrink in this order: trim lowest-value bullets, reduce spacing, body to 10pt, margins to 0.6in. Never below 10pt, never a second page.
+DESIGN SPEC (must look good AND parse cleanly)
+- A4, single column. No tables, text boxes, columns, icons, images, graphics, headers/footers or hyperlinks.
+- Font: Calibri or Arial. Name 18pt bold centered; contact line 10pt centered; section headings 11pt bold uppercase with a thin rule underneath; body 10.5pt; line spacing 1.08; margins 0.7in.
+- Entry layout: bold company/project/institution on the left with dates right-aligned using a right-aligned tab stop (not a table); role or degree in italics on the next line.
+- Real bullet list formatting, not typed symbols. Same indentation in every section.
+- All headings, dates and bullets align to the same left and right margins.
+
+FULL-PAGE RULE (no empty space, no overflow)
+The page must be filled from the top margin to within 0.5 inch of the bottom margin.
+If underfilled, expand in this order, re-checking after each step:
+1. Section heading spacing 10-12pt before, 4-5pt between entries.
+2. Body font 11pt, margins 0.8in.
+3. Add a 3rd bullet to entries with only 2, using real details from my resume.
+4. Add a "Relevant Coursework" line under Education and a 4th project, only if they exist in my resume.
+5. Expand the Summary to 3 lines.
+If overflowing, reverse: apply CONTENT SELECTION, reduce spacing, body to 10pt, margins to 0.6in. Never below 10pt, never a second page unless I approved it.
+If the page still cannot be filled honestly, tell me exactly what extra information to provide (projects, coursework, tools, responsibilities). Never pad with invented content.
 
 OUTPUT
 1. Phase 1 score table and keyword lists.
-2. Generate and send TWO files: Resume_[Name]_[Company].docx and Resume_[Name]_[Company].pdf, with identical content. The PDF must contain real selectable text, not an image.
-3. Verify before sending: render the PDF, confirm it is exactly one page, confirm text copies out in correct reading order, and confirm the DOCX opens cleanly.
-4. After the files: show the estimated score of the NEW resume using the same rubric (before vs after), the Tier 1 and Tier 2 keywords matched, important JD skills I lack, and any [CONFIRM: ...] questions.
+2. Generate and send TWO files with identical content: Resume_[Name]_[Company].docx and Resume_[Name]_[Company].pdf. The PDF must contain real selectable text, not an image.
+3. Verify before sending: render the PDF; confirm it is exactly one page; confirm the bottom gap is under 0.5 inch; confirm all sections align; confirm copied text reads in correct order; confirm the DOCX opens cleanly.
+4. After the files, show:
+   - NEW estimated score using the same rubric (before vs after)
+   - Tier 1 and Tier 2 keywords matched
+   - Important JD skills I lack (not added)
+   - Removed for space (if any)
+   - Questions for me: [CONFIRM: ...] items and "Do you have X?" items
